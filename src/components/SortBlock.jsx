@@ -1,7 +1,19 @@
+import React from 'react';
+
 function SortBlock() {
+	const [open, setOpen] = React.useState(true);
+	const [selected, setSelected] = React.useState(0);
+
+	const list = ['Популярности', 'Цене', 'Алфавиту'];
+	const onCLickListItem = (index) => {
+		setSelected(index);
+		setOpen(false);
+	};
+	const sortName = list[selected];
+
 	return (
 		<div class="sort">
-			<div class="sort__label">
+			<div onClick={() => setOpen(!open)} className="sort__label">
 				<svg
 					width="10"
 					height="6"
@@ -14,15 +26,23 @@ function SortBlock() {
 					/>
 				</svg>
 				<b>Сортировка по:</b>
-				<span>популярности</span>
+				{/* <span>популярности</span> */}
+				<span>{sortName}</span>
 			</div>
-			<div class="sort__popup">
-				<ul>
-					<li class="active">популярности</li>
-					<li>цене</li>
-					<li>алфавиту</li>
-				</ul>
-			</div>
+			{open && (
+				<div className="sort__popup">
+					<ul>
+						{list.map((name, index) => (
+							<li
+								key={index}
+								onClick={() => onCLickListItem(index)}
+								className={selected === index ? 'active' : ''}>
+								{name}
+							</li>
+						))}
+					</ul>
+				</div>
+			)}
 		</div>
 	);
 }

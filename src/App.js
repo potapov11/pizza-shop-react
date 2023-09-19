@@ -19,17 +19,17 @@ function App() {
 					</div>
 					<h2 class="content__title">Все пиццы</h2>
 					<div class="content__items">
-						{
-							pizzas.map(pizzaItem => 
-							<PizzaBlock 
-							//Можно сделать spread опреатором {...pizzaItem}
-							title={pizzaItem.title} 
-							price={pizzaItem.price} 
-							imgUrl={pizzaItem.imageUrl}
-							sizes={pizzaItem.sizes}
-							types={pizzaItem.types}
-							/>)
-						}
+						{pizzas.map((pizzaItem, index) => (
+							<PizzaBlock
+								key={index}
+								//Можно сделать spread опреатором {...pizzaItem}
+								title={pizzaItem.title}
+								price={pizzaItem.price}
+								imgUrl={pizzaItem.imageUrl}
+								sizes={pizzaItem.sizes}
+								types={pizzaItem.types}
+							/>
+						))}
 					</div>
 				</div>
 			</div>

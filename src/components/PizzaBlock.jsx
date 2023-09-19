@@ -1,37 +1,42 @@
 import React from 'react';
 
 function PizzaBlock({ title, price, imgUrl, sizes, types }) {
-const typeNames = ['Тонкое', 'Традиционное'];
+	const typeNames = ['Тонкое', 'Традиционное'];
 
-const [activeType, setActiveType] = React.useState(0);
-const clickActive = (index) => {
-	setActiveType(index);
-}
-const [activeSize, setActiveSize] = React.useState(0);
-const clickActiveSize = (index) => {
-	setActiveSize(index);
-}
+	const [activeType, setActiveType] = React.useState(0);
+	const clickActive = (index) => {
+		setActiveType(index);
+	};
+	const [activeSize, setActiveSize] = React.useState(0);
+	const clickActiveSize = (index) => {
+		setActiveSize(index);
+	};
 
 	return (
-
 		<div className="pizza-block">
-			<img
-				className="pizza-block__image"
-				src={imgUrl}
-				alt="Pizza"
-			/>
+			<img className="pizza-block__image" src={imgUrl} alt="Pizza" />
 			<h4 className="pizza-block__title">{title}</h4>
 			<div className="pizza-block__selector">
 				<ul>
-				{
-					types.map((typeIndex, index) => <li onClick={(() => clickActive(index))} className={activeType === index ? 'active' : ''}>{typeNames[typeIndex]}</li>)
-					}
+					{types.map((typeIndex, index) => (
+						<li
+							key={index}
+							onClick={() => clickActive(index)}
+							className={activeType === index ? 'active' : ''}>
+							{typeNames[typeIndex]}
+						</li>
+					))}
 				</ul>
 				<ul>
-					{
-						sizes.map((size, index) => 
-						<li onClick={(() => clickActiveSize(index))} className={activeSize === index ? 'active' : ''}>{size} см.</li>)
-					}
+					{sizes.map((size, index) => (
+						<li
+							li
+							key={index}
+							onClick={() => clickActiveSize(index)}
+							className={activeSize === index ? 'active' : ''}>
+							{size} см.
+						</li>
+					))}
 				</ul>
 			</div>
 			<div className="pizza-block__bottom">
