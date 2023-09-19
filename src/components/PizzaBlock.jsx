@@ -1,8 +1,19 @@
 import React from 'react';
 
-function PizzaBlock({ title, price, imgUrl, sizes }) {
+function PizzaBlock({ title, price, imgUrl, sizes, types }) {
+const typeNames = ['Тонкое', 'Традиционное'];
+
+const [activeType, setActiveType] = React.useState(0);
+const clickActive = (index) => {
+	setActiveType(index);
+}
+const [activeSize, setActiveSize] = React.useState(0);
+const clickActiveSize = (index) => {
+	setActiveSize(index);
+}
 
 	return (
+
 		<div className="pizza-block">
 			<img
 				className="pizza-block__image"
@@ -12,13 +23,15 @@ function PizzaBlock({ title, price, imgUrl, sizes }) {
 			<h4 className="pizza-block__title">{title}</h4>
 			<div className="pizza-block__selector">
 				<ul>
-					<li className="active">тонкое</li>
-					<li>традиционное</li>
+				{
+					types.map((typeIndex, index) => <li onClick={(() => clickActive(index))} className={activeType === index ? 'active' : ''}>{typeNames[typeIndex]}</li>)
+					}
 				</ul>
 				<ul>
-					<li className="active">26 см. </li>
-					<li>30 см.</li>
-					<li>40 см.</li>
+					{
+						sizes.map((size, index) => 
+						<li onClick={(() => clickActiveSize(index))} className={activeSize === index ? 'active' : ''}>{size} см.</li>)
+					}
 				</ul>
 			</div>
 			<div className="pizza-block__bottom">
