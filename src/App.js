@@ -1,13 +1,24 @@
+import React from 'react';
+
 import './scss/app.scss';
 import Header from './components/Header';
 import Categories from './components/Categories';
 import SortBlock from './components/SortBlock';
 import PizzaBlock from './components/PizzaBlock';
-import pizzas from './assets/pizzas.json';
-
-console.log(pizzas);
 
 function App() {
+	const [items, setItems] = React.useState([]);
+
+	React.useEffect(() => {
+		fetch('https://650df063a8b42265ec2cd729.mockapi.io/items')
+			.then((res) => {
+				return res.json();
+			})
+			.then((arr) => {
+				setItems(arr);
+			});
+	}, []);
+
 	return (
 		<div class="wrapper">
 			<Header />
@@ -19,7 +30,7 @@ function App() {
 					</div>
 					<h2 class="content__title">Все пиццы</h2>
 					<div class="content__items">
-						{pizzas.map((pizzaItem, index) => (
+						{items.map((pizzaItem, index) => (
 							<PizzaBlock
 								key={index}
 								//Можно сделать spread опреатором {...pizzaItem}
