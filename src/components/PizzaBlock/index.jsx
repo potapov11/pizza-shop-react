@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PizzaBlock({ title, price, imgUrl, sizes, types }) {
+function PizzaBlock({ imgUrl, title, price, sizes, types }) {
 	const typeNames = ['Тонкое', 'Традиционное'];
 
 	const [activeType, setActiveType] = React.useState(0);
