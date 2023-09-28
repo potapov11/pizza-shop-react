@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PizzaBlock({ imgUrl, title, price, sizes, types }) {
+function PizzaBlock({ imageUrl, title, price, sizes, types }) {
 	const typeNames = ['Тонкое', 'Традиционное'];
 
 	const [activeType, setActiveType] = React.useState(0);
@@ -14,7 +14,7 @@ function PizzaBlock({ imgUrl, title, price, sizes, types }) {
 
 	return (
 		<div className="pizza-block">
-			<img className="pizza-block__image" src={imgUrl} alt="Pizza" />
+			<img className="pizza-block__image" src={imageUrl} alt="Pizza" />
 			<h4 className="pizza-block__title">{title}</h4>
 			<div className="pizza-block__selector">
 				<ul>

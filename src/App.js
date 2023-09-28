@@ -19,9 +19,11 @@ function App() {
 			.then((arr) => {
 				setItems(arr);
 				setIsloading(false);
+				console.log(items);
 			});
 	}, []);
 
+	console.log(items);
 	return (
 		<div class="wrapper">
 			<Header />
@@ -34,8 +36,8 @@ function App() {
 					<h2 class="content__title">Все пиццы</h2>
 					<div class="content__items">
 						{isLoading
-							? [...new Array(6)].map((item) => <Skeleton />)
-							: items.map((pizzaItem, index) => <PizzaBlock key={pizzaItem.id} {...pizzaItem} />)}
+							? [...new Array(6)].map((_, i) => <Skeleton key={i} />)
+							: items.map((obj) => <PizzaBlock key={obj.id} {...obj} />)}
 					</div>
 				</div>
 			</div>
@@ -44,10 +46,3 @@ function App() {
 }
 
 export default App;
-
-//Можно сделать spread опреатором {...pizzaItem}
-// title={pizzaItem.title}
-// price={pizzaItem.price}
-// imgUrl={pizzaItem.imageUrl}
-// sizes={pizzaItem.sizes}
-// types={pizzaItem.types}
